@@ -33,7 +33,13 @@ public class TargetedAd {
   
   
       /* your code here */
-      
+      DataCollector customerData = new DataCollector();
+      customerData.setData("socialMediaPostsSmall.txt", "targetWords.txt");
+
+      String post = customerData.getNextPost();
+      String customerName = post.split(" ")[0]; // name will be the first word in the post
+
+      System.out.println(post);
        
     }
   
