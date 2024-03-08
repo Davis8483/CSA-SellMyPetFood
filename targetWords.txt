@@ -1,0 +1,11 @@
+pet
+dog
+cat
+kitty
+litter
+puppy
+treat
+wag
+purr
+bark
+growl

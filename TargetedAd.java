@@ -1,6 +1,9 @@
 /*
  * Problem 2 Sell My Pet Food
  */
+
+import java.util.ArrayList;
+
 public class TargetedAd {
 
     public static void main(String[] args)
@@ -33,13 +36,30 @@ public class TargetedAd {
   
   
       /* your code here */
+      String targetUsers = "";
       DataCollector customerData = new DataCollector();
       customerData.setData("socialMediaPostsSmall.txt", "targetWords.txt");
-
+      
+      // loop through all posts
       String post = customerData.getNextPost();
-      String customerName = post.split(" ")[0]; // name will be the first word in the post
+      while(!post.equals("NONE")){
+        String customerName = post.split(" ")[0]; // name will be the first word in the post
+        
+        // loop through all target words
+        String word = customerData.getNextTargetWord();
+        while(!word.equals("NONE")){
+          
+          // check if the post contains the target words and make sure there are not duplicate users
+          if(post.contains(word) & !targetUsers.contains(customerName)){
+            targetUsers += customerName + " ";
+          }
+  
+          word = customerData.getNextTargetWord();
+        }
 
-      System.out.println(post);
+        post = customerData.getNextPost();
+      }
+      customerData.prepareAdvertisement("advertisement.txt", targetUsers, "You should buy our pet food... NOW");
        
     }
   
